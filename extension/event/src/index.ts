@@ -1,48 +1,16 @@
 import * as SocketIOClient from "socket.io-client";
-import {wrapStore} from "react-chrome-redux";
+import { wrapStore } from "react-chrome-redux";
 
-enum MsgType {
-  ListFiles = "ListFiles",
-  FileUpdated = "FileUpdated"
-}
+import Store from "./store";
+import { PORT_NAME } from "../../shared/constants";
+import { IState } from "../../shared/types";
 
-interface IListFilesEvent {
-  paths: string[];
-}
+const store = Store();
 
-interface IFileUpdated {
-  path: string;
-}
+wrapStore<IState>(store, { portName: PORT_NAME });
 
-const SERVER_ROOT = "http://34.212.184.97:8081";
-const DIR_NAME = "chrome-cloud-build";
-
-const socket = SocketIOClient(SERVER_ROOT);
-
-function downloadFile(path: string): void {
-  chrome.downloads.download({
-    filename: `${DIR_NAME}/${path}`,
-    url: `${SERVER_ROOT}/src/${path}`,
-    conflictAction: "overwrite"
+chrome.browserAction.onClicked.addListener(function() {
+  chrome.tabs.create({
+    url: chrome.runtime.getURL("ui.html")
   });
-}
-
-socket.on("connect", function() {
-  console.log("Connected to build server.");
-});
-
-socket.on("disconnect", function() {});
-
-socket.on(MsgType.ListFiles, (data: IListFilesEvent) => {
-  const { paths } = data;
-
-  paths.forEach(path => {
-    downloadFile(path);
-  });
-});
-
-socket.on(MsgType.FileUpdated, (data: IFileUpdated) => {
-  const { path } = data;
-
-  downloadFile(path);
 });

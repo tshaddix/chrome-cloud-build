@@ -1,20 +1,19 @@
 {
   "name": "chrome-cloud-build-extension",
   "version": "0.0.1",
-  "description": "Build your Chrome projects in the cloud, then run them locally.",
+  "description":
+    "Build your Chrome projects in the cloud, then run them locally.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "./scripts/build.sh",
-    "format": "./node_modules/.bin/prettier es6 --write \"{event/**/*.{ts,tsx},webpack.config.js}\"",
+    "format":
+      "./node_modules/.bin/prettier es6 --write \"{event/**/*.{ts,tsx},webpack.config.js}\"",
     "precommit": "./node_modules/.bin/lint-staged",
     "watch": "./node_modules/.bin/nodemon ./scripts/build.sh"
   },
   "lint-staged": {
-    "*.{js,json,css,scss,md,ts,tsx}": [
-      "npm run format",
-      "git add"
-    ]
+    "*.{js,json,css,scss,md,ts,tsx}": ["npm run format", "git add"]
   },
   "author": "Tyler Shaddix <tylershaddix@gmail.com>",
   "license": "ISC",
@@ -25,19 +24,26 @@
     "@types/react-dom": "^16.0.3",
     "classnames": "^2.2.5",
     "react": "^16.2.0",
-    "react-chrome-redux": "^1.5.0",
+    "react-chrome-redux": "^1.5.1",
     "react-dom": "^16.2.0",
+    "react-redux": "^5.0.6",
     "redux": "^3.7.2",
+    "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
     "socket.io-client": "^2.0.4"
   },
   "devDependencies": {
     "awesome-typescript-loader": "^3.4.1",
+    "css-loader": "^0.28.8",
+    "file-loader": "^1.1.6",
     "husky": "^0.14.3",
     "lint-staged": "^6.0.0",
+    "nodemon": "^1.14.11",
     "prettier": "^1.10.1",
     "source-map-loader": "^0.2.3",
+    "style-loader": "^0.19.1",
     "typescript": "^2.6.2",
+    "url-loader": "^0.6.2",
     "webpack": "^3.10.0"
   }
 }
