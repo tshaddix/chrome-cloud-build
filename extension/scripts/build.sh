@@ -7,3 +7,4 @@ webpack --config event/webpack.config.js
 # webpack --config content-script/webpack.config.js
 
 cp config/manifest.json build/manifest.json
+cp -r icons build/icons
