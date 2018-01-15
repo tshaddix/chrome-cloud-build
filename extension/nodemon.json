@@ -1,0 +1,8 @@
+{
+  "verbose": true,
+  "ignore": ["build/*"],
+  "ext": "ts,tsx,css,scss",
+  "execMap": {
+    "sh": "bash"
+  }
+}

@@ -1,4 +1,5 @@
 import * as SocketIOClient from "socket.io-client";
+import {wrapStore} from "react-chrome-redux";
 
 enum MsgType {
   ListFiles = "ListFiles",
@@ -11,20 +12,6 @@ interface IListFilesEvent {
 
 interface IFileUpdated {
   path: string;
-}
-
-interface IAppState {
-  // the root server url
-  serverRoot?: string;
-  // the name of the directory to create
-  // and update in downloads
-  dirName?: string;
-  // specifies whether the socket is currently connected
-  isConnected: boolean;
-  // specifies whether the app has been configured
-  isSetup: boolean;
-  // contains last error encountered
-  error?: Error;
 }
 
 const SERVER_ROOT = "http://34.212.184.97:8081";
