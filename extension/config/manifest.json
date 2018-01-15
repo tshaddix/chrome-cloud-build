@@ -1,0 +1,16 @@
+{
+  "manifest_version": 2,
+  "name": "Chrome Cloud Build",
+  "description": "Build your Chrome projects in the cloud, then run them locally.",
+  "version": "0.0.1",
+  "background": {
+    "scripts": [
+      "event.js"
+    ],
+    "persistent": true
+  },
+  "permissions": [
+    "downloads"
+  ],
+  "browser_action": {} 
+}

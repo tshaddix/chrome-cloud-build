@@ -1,0 +1,36 @@
+{
+  "name": "chrome-cloud-build-extension",
+  "version": "0.0.1",
+  "description": "Build your Chrome projects in the cloud, then run them locally.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "./scripts/build.sh",
+    "format": "./node_modules/.bin/prettier es6 --write \"{event/**/*.{ts,tsx},webpack.config.js}\"",
+    "precommit": "./node_modules/.bin/lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,json,css,scss,md,ts,tsx}": ["npm run format", "git add"]
+  },
+  "author": "Tyler Shaddix <tylershaddix@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "@types/chrome": "0.0.58",
+    "@types/classnames": "^2.2.3",
+    "@types/react": "^16.0.34",
+    "@types/react-dom": "^16.0.3",
+    "classnames": "^2.2.5",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "socket.io-client": "^2.0.4"
+  },
+  "devDependencies": {
+    "awesome-typescript-loader": "^3.4.1",
+    "husky": "^0.14.3",
+    "lint-staged": "^6.0.0",
+    "prettier": "^1.10.1",
+    "source-map-loader": "^0.2.3",
+    "typescript": "^2.6.2",
+    "webpack": "^3.10.0"
+  }
+}
