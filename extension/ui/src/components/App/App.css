@@ -1,0 +1,28 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600");
+
+:root {
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.6;
+  box-sizing: border-box;
+}
+
+.app {
+  padding: 40px;
+}
+
+.brand {
+  font-size: 24px;
+  font-weight: 600;
+  padding-left: 50px;
+  height: 40px;
+  color: #333;
+  
+  background: url("./img/icon80.png");
+  background-size: 40px 40px;
+  background-repeat: no-repeat;
+  background-position: left center;
+  
+  margin-bottom: 20px;
+}

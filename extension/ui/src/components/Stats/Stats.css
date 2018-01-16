@@ -1,10 +1,14 @@
 .logContainer {
-  height: 300px;
-  width: 100%;
-  overflow-y: scroll;
   font-family: monospace;
   background: #e0e0e0;
   margin-top: 15px;
+  padding: 40px;
+  border-radius: 4px;
+}
+
+.logContainer .logs {
+  height: 300px;
+  overflow-y: scroll;
 }
 
 .log {
@@ -17,4 +21,24 @@
 
 .log.error {
   color: red;
+}
+
+.statusContainer {
+  font-size: 18px;
+}
+
+.statusContainer button {
+  background: transparent;
+  border: 1px solid red;
+  cursor: pointer;
+  color: red;
+  box-shadow: none;
+  border-radius: 2px;
+  font-size: 16px;
+}
+
+.statusContainer button:hover,
+.statusContainer button:focus {
+  background: red;
+  color: white;
 }

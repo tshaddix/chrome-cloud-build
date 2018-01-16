@@ -1,5 +1,7 @@
 import * as React from "react";
 
+const style = require("./ConfigureForm.css");
+
 export interface IConfigureFormProps {
   onConfigure: (serverRoot: string, dirName: string) => any;
 }
@@ -51,17 +53,17 @@ export default class ConfigureForm extends React.Component<
 
     return (
       <form onSubmit={this.onConfigure}>
-        <div>
-          <label>Server:</label>
+        <div className={style.formGroup}>
+          <label>Server</label>
           <input
             type="text"
-            placeholder="http://1.2.3.4"
+            placeholder="http://1.2.3.4:8081"
             value={serverRoot}
             onChange={this.onServerRootChange}
           />
         </div>
-        <div>
-          <label>Download Folder:</label>
+        <div className={style.formGroup}>
+          <label>Download Folder</label>
           <input
             type="text"
             placeholder="my-extension"
@@ -69,7 +71,7 @@ export default class ConfigureForm extends React.Component<
             onChange={this.onDirNameChange}
           />
         </div>
-        <div>
+        <div className={style.formSubmit}>
           <button disabled={!serverRoot || !dirName} type="submit">
             Connect
           </button>

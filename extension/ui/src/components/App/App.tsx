@@ -11,6 +11,7 @@ import {
 } from "../../../../shared/types";
 import ConfigureForm from "../ConfigureForm/ConfigureForm";
 import Stats from "../Stats/Stats";
+const style = require("./App.css");
 
 export interface IAppProps {
   dispatch: IDispatch;
@@ -52,7 +53,11 @@ class App extends React.Component<IAppProps> {
     const { log, connected, configured } = this.props;
 
     return (
-      <div>
+      <div className={style.app}>
+        <header>
+          <div className={style.brand}>Chrome Cloud Build</div>
+        </header>
+        
         {!configured.isConfigured && (
           <ConfigureForm onConfigure={this.onConfigure} />
         )}

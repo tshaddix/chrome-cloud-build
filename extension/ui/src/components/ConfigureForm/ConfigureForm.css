@@ -1,0 +1,39 @@
+.formGroup {
+  margin-bottom: 10px;
+}
+
+.formGroup label {
+  font-size: 16px;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.formGroup input[type="text"] {
+  padding: 10px;
+}
+
+.formSubmit {
+  margin-top: 20px;
+}
+
+.formSubmit button {
+  background: #2541B2;
+  border: 0;
+  box-shadow: none;
+  padding: 8px 16px;
+  color: #fff;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.formSubmit button:hover,
+.formSubmit button:focus {
+  background: #06BEE1;
+}
+
+.formSubmit button[disabled] {
+  background: #e0e0e0;
+  color: #777;
+  cursor: not-allowed;
+}

@@ -45,19 +45,21 @@ export default class Stats extends React.Component<IStatsProps> {
 
     return (
       <div>
-        <div>
+        <div className={style.statusContainer}>
           Status: {connected.isConnected ? "Connected" : "Disconnected"}{" "}
           &nbsp;&nbsp;
           <button type="button" onClick={this.onUnConfigureClicked}>
-            Stop
+            Exit
           </button>
         </div>
         <div className={style.logContainer}>
-          {log.logs.map((log: ILogEntry) => (
-            <div className={logClassName(log.type)} key={log.time.toString()}>
-              [{new Date(log.time).toUTCString()}] {log.content}
-            </div>
-          ))}
+          <div className={style.logs}>
+            {log.logs.map((log: ILogEntry) => (
+              <div className={logClassName(log.type)} key={log.time.toString()}>
+                [{new Date(log.time).toUTCString()}] {log.content}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     );
