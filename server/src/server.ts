@@ -3,7 +3,7 @@ import * as express from "express";
 import * as path from "path";
 import * as cors from "cors";
 import * as SocketIO from "socket.io";
-import * as http from "http";
+import {Server} from "http";
 import * as fs from "fs";
 import * as chokidar from "chokidar";
 import { keys } from "lodash";
@@ -22,7 +22,9 @@ const srcDir: string = argv.d;
 const hostname: string = argv.h || "localhost";
 
 const app = express();
-const server = http.Server(app);
+
+const typeSafeServer = Server as any;
+const server = typeSafeServer(app);
 
 app.use(cors());
 

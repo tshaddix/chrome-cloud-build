@@ -4,30 +4,34 @@
   "description": "Build your Chrome projects in the cloud, then run them locally.",
   "author": "Tyler Shaddix <tylershaddix@gmail.com>",
   "license": "ISC",
+  "bin": {
+    "chrome-cloud-build-server" : "./lib/server.js"
+  },
   "scripts": {
     "format": "./node_modules/.bin/prettier es6 --write \"src/**/*.{ts,js}\"",
-    "precommit": "./node_modules/.bin/lint-staged"
+    "precommit": "./node_modules/.bin/lint-staged",
+    "build": "./scripts/build.sh",
+    "prepublish": "npm run build"
   },
   "lint-staged": {
     "*.{js,json,css,scss,md,ts,tsx}": ["npm run format", "git add"]
   },
   "dependencies": {
-    "@types/chokidar": "^1.7.4",
-    "@types/express": "^4.11.0",
-    "@types/lodash": "^4.14.92",
-    "@types/yargs": "^10.0.1",
     "chokidar": "^2.0.0",
     "cors": "^2.8.4",
     "express": "^4.16.2",
     "lodash": "^4.17.4",
     "socket.io": "^2.0.4",
-    "ts-node": "^4.1.0",
-    "typescript": "^2.6.2",
     "yargs": "^10.1.1"
   },
   "devDependencies": {
     "husky": "^0.14.3",
     "lint-staged": "^6.0.0",
-    "prettier": "^1.10.2"
+    "prettier": "^1.10.2",
+    "typescript": "^2.6.2",
+    "@types/chokidar": "^1.7.4",
+    "@types/express": "^4.11.0",
+    "@types/lodash": "^4.14.92",
+    "@types/yargs": "^10.0.1"
   }
 }
