@@ -1,9 +1,25 @@
 # chrome-cloud-build
+
+![logo](./extension/icons/icon80.png)
+
 Build your Chrome projects in the cloud, then run them locally.
 
 ```
-cd server
-
-# Run the server on 0.0.0.0:8081, serving changes from /home/ec2-user/my-app/build
-node run.js -p 8081 -d /home/ec2-user/my-app/build -h 0.0.0.0
+npm install --save-dev chrome-cloud-build-server
 ```
+
+Then, you can add a command to your package.json:
+
+```
+{
+  "build-server": "./node_modules/.bin/chrome-cloud-build-server -p 8081 -h 0.0.0.0 -d $(pwd)/build"
+}
+```
+
+After that, you just need to run that script:
+
+```
+npm run build-server
+```
+
+Now all changes in that folder will be pushed to any connected extensions.
