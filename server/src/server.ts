@@ -3,7 +3,7 @@ import * as express from "express";
 import * as path from "path";
 import * as cors from "cors";
 import * as SocketIO from "socket.io";
-import {Server} from "http";
+import { Server } from "http";
 import * as fs from "fs";
 import * as chokidar from "chokidar";
 import { keys } from "lodash";
@@ -37,47 +37,46 @@ io.on("connection", function(socket) {
   const paths = watcher.getWatched();
 
   const fullPaths = [];
-  
+
   // remove directories from
   // file paths array
   keys(paths)
     .filter(key => key !== "..")
     .forEach((key: string) => {
       const dirs = key.split("/");
-      
+
       let parentDir = "";
-      
+
       if (dirs.length === 1) {
         parentDir = ".";
       } else {
         parentDir = dirs.slice(0, -1).join("/");
       }
-      
-      paths[parentDir] = paths[parentDir].filter(filename => filename !== dirs[dirs.length - 1]);
+
+      paths[parentDir] = paths[parentDir].filter(
+        filename => filename !== dirs[dirs.length - 1]
+      );
     });
 
   // flatten all file paths
-  keys(paths)
-    .forEach((key: string) => {
-      if (key === "..") {
-        return;
-      }
-  
-      if (key === ".") {
-        fullPaths.push.apply(fullPaths, paths[key]);
-        return;
-      }
-  
-      paths[key]
-        .map(filename => {
-          return `${key}/${filename}`;
-        })
-        .forEach(fullPath => {
-          fullPaths.push(fullPath);
-        });
-    });
+  keys(paths).forEach((key: string) => {
+    if (key === "..") {
+      return;
+    }
 
-  console.log(fullPaths);
+    if (key === ".") {
+      fullPaths.push.apply(fullPaths, paths[key]);
+      return;
+    }
+
+    paths[key]
+      .map(filename => {
+        return `${key}/${filename}`;
+      })
+      .forEach(fullPath => {
+        fullPaths.push(fullPath);
+      });
+  });
 
   console.log("Client connected...");
 
@@ -85,7 +84,7 @@ io.on("connection", function(socket) {
 });
 
 function onFileUpdated(path) {
-  console.log("File updated - sending update to all clients...");
+  console.log(`File updated: ${path}`);
 
   io.emit(MsgType.FileUpdated, { path });
 }
