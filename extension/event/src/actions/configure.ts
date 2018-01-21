@@ -31,8 +31,6 @@ export function configure(opts: {
 
     dispatch(log(`Creating connection to ${serverRoot}`));
 
-    chrome.browserAction.setBadgeText({ text: "*" });
-
     function downloadFile(path: string): void {
       const url = `${serverRoot}/src/${path}`;
       const filename = `${dirName}/${path}`;
@@ -51,7 +49,12 @@ export function configure(opts: {
 
       dispatch(setConnected(true));
 
-      chrome.browserAction.setBadgeBackgroundColor({ color: "#43a047" });
+      chrome.browserAction.setIcon({
+        path: {
+          19: "icons/icon_good19.png",
+          38: "icons/icon_good38.png"
+        }
+      });
     });
 
     socket.on("disconnect", function() {
@@ -59,7 +62,12 @@ export function configure(opts: {
 
       dispatch(setConnected(false));
 
-      chrome.browserAction.setBadgeBackgroundColor({ color: "#e53935" });
+      chrome.browserAction.setIcon({
+        path: {
+          19: "icons/icon_bad19.png",
+          38: "icons/icon_bad38.png"
+        }
+      });
     });
 
     socket.on("reconnect_error", function(err: any) {
@@ -105,7 +113,12 @@ export function unconfigure(): IThunk {
       socket = null;
     }
 
-    chrome.browserAction.setBadgeText({ text: "" });
+    chrome.browserAction.setIcon({
+      path: {
+        19: "icons/icon_neutral19.png",
+        38: "icons/icon_neutral38.png"
+      }
+    });
 
     dispatch({
       type: ActionTypes.UnConfigureAlias,

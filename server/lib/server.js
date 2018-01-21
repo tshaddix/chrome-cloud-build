@@ -46,8 +46,7 @@ io.on("connection", function (socket) {
         paths[parentDir] = paths[parentDir].filter(filename => filename !== dirs[dirs.length - 1]);
     });
     // flatten all file paths
-    lodash_1.keys(paths)
-        .forEach((key) => {
+    lodash_1.keys(paths).forEach((key) => {
         if (key === "..") {
             return;
         }
@@ -63,12 +62,11 @@ io.on("connection", function (socket) {
             fullPaths.push(fullPath);
         });
     });
-    console.log(fullPaths);
     console.log("Client connected...");
     socket.emit(MsgType.ListFiles, { paths: fullPaths });
 });
 function onFileUpdated(path) {
-    console.log("File updated - sending update to all clients...");
+    console.log(`File updated: ${path}`);
     io.emit(MsgType.FileUpdated, { path });
 }
 const watcher = chokidar.watch(".", {

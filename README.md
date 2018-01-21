@@ -1,6 +1,6 @@
 # chrome-cloud-build
 
-![logo](./extension/icons/icon80.png)
+![logo](./extension/icons/icon_neutral80.png)
 
 Build your Chrome projects in the cloud, then run them locally.
 

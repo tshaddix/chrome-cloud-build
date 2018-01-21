@@ -1,4 +1,3 @@
-import * as SocketIOClient from "socket.io-client";
 import { wrapStore } from "react-chrome-redux";
 
 import Store from "./store";
