@@ -30,7 +30,24 @@ const io = SocketIO(server);
 io.on("connection", function (socket) {
     const paths = watcher.getWatched();
     const fullPaths = [];
-    lodash_1.keys(paths).forEach((key) => {
+    // remove directories from
+    // file paths array
+    lodash_1.keys(paths)
+        .filter(key => key !== "..")
+        .forEach((key) => {
+        const dirs = key.split("/");
+        let parentDir = "";
+        if (dirs.length === 1) {
+            parentDir = ".";
+        }
+        else {
+            parentDir = dirs.slice(0, -1).join("/");
+        }
+        paths[parentDir] = paths[parentDir].filter(filename => filename !== dirs[dirs.length - 1]);
+    });
+    // flatten all file paths
+    lodash_1.keys(paths)
+        .forEach((key) => {
         if (key === "..") {
             return;
         }
@@ -46,6 +63,7 @@ io.on("connection", function (socket) {
             fullPaths.push(fullPath);
         });
     });
+    console.log(fullPaths);
     console.log("Client connected...");
     socket.emit(MsgType.ListFiles, { paths: fullPaths });
 });

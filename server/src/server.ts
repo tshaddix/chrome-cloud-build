@@ -37,25 +37,47 @@ io.on("connection", function(socket) {
   const paths = watcher.getWatched();
 
   const fullPaths = [];
+  
+  // remove directories from
+  // file paths array
+  keys(paths)
+    .filter(key => key !== "..")
+    .forEach((key: string) => {
+      const dirs = key.split("/");
+      
+      let parentDir = "";
+      
+      if (dirs.length === 1) {
+        parentDir = ".";
+      } else {
+        parentDir = dirs.slice(0, -1).join("/");
+      }
+      
+      paths[parentDir] = paths[parentDir].filter(filename => filename !== dirs[dirs.length - 1]);
+    });
 
-  keys(paths).forEach((key: string) => {
-    if (key === "..") {
-      return;
-    }
+  // flatten all file paths
+  keys(paths)
+    .forEach((key: string) => {
+      if (key === "..") {
+        return;
+      }
+  
+      if (key === ".") {
+        fullPaths.push.apply(fullPaths, paths[key]);
+        return;
+      }
+  
+      paths[key]
+        .map(filename => {
+          return `${key}/${filename}`;
+        })
+        .forEach(fullPath => {
+          fullPaths.push(fullPath);
+        });
+    });
 
-    if (key === ".") {
-      fullPaths.push.apply(fullPaths, paths[key]);
-      return;
-    }
-
-    paths[key]
-      .map(filename => {
-        return `${key}/${filename}`;
-      })
-      .forEach(fullPath => {
-        fullPaths.push(fullPath);
-      });
-  });
+  console.log(fullPaths);
 
   console.log("Client connected...");
 
