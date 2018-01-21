@@ -1,6 +1,6 @@
 {
   "name": "chrome-cloud-build-server",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Build your Chrome projects in the cloud, then run them locally.",
   "author": "Tyler Shaddix <tylershaddix@gmail.com>",
   "license": "ISC",
